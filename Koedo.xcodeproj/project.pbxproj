@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		119705BF235DF9D1009CD88B /* Koedo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Koedo; sourceTree = BUILT_PRODUCTS_DIR; };
+		119705BF235DF9D1009CD88B /* koedo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = koedo; sourceTree = BUILT_PRODUCTS_DIR; };
 		119705C2235DF9D1009CD88B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 		119705C0235DF9D1009CD88B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				119705BF235DF9D1009CD88B /* Koedo */,
+				119705BF235DF9D1009CD88B /* koedo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,9 +65,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		119705BE235DF9D1009CD88B /* Koedo */ = {
+		119705BE235DF9D1009CD88B /* koedo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 119705C6235DF9D1009CD88B /* Build configuration list for PBXNativeTarget "Koedo" */;
+			buildConfigurationList = 119705C6235DF9D1009CD88B /* Build configuration list for PBXNativeTarget "koedo" */;
 			buildPhases = (
 				119705BB235DF9D1009CD88B /* Sources */,
 				119705BC235DF9D1009CD88B /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = Koedo;
+			name = koedo;
 			productName = Koedo;
-			productReference = 119705BF235DF9D1009CD88B /* Koedo */;
+			productReference = 119705BF235DF9D1009CD88B /* koedo */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -109,7 +109,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				119705BE235DF9D1009CD88B /* Koedo */,
+				119705BE235DF9D1009CD88B /* koedo */,
 			);
 		};
 /* End PBXProject section */
@@ -273,7 +273,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		119705C6235DF9D1009CD88B /* Build configuration list for PBXNativeTarget "Koedo" */ = {
+		119705C6235DF9D1009CD88B /* Build configuration list for PBXNativeTarget "koedo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119705C7235DF9D1009CD88B /* Debug */,
