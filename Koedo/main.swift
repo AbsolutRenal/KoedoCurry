@@ -32,20 +32,22 @@ enum Day: String {
     case thursday = "jeudi"
     case friday = "vendredi"
 
+    static let allDays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday]
+
     init?(withWeekDay weekDay: Int) {
-        switch weekDay {
-        case 2:
-            self = .monday
-        case 3:
-            self = .tuesday
-        case 4:
-            self = .wednesday
-        case 5:
-            self = .thursday
-        case 6:
-            self = .friday
-        default:
+        guard let day = Day.allDays.first(where: { $0.weekDayIndex() == weekDay }) else {
             return nil
+        }
+        self = day
+    }
+
+    func weekDayIndex() -> Int {
+        switch self {
+        case .monday: return 2
+        case .tuesday: return 3
+        case .wednesday: return 4
+        case .thursday: return 5
+        case .friday: return 6
         }
     }
 }
@@ -69,9 +71,21 @@ struct MealDay {
 
 typealias KoedoMenu = [Day: [String]]
 extension KoedoMenu {
+    func ordered() -> KoedoMenuOrdered {
+        return self.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.key.weekDayIndex() < rhs.key.weekDayIndex()
+        })
+    }
+}
+
+typealias KoedoMenuOrdered = [(Day, [String])]
+extension KoedoMenuOrdered {
+    // MARK: Public
     func menu(forDay day: Day) -> String {
-        let dayMenu = self[day]
-        let menuString = "\n-- \(day.rawValue):\n\(dayMenu!.joined(separator: "\n"))\n"
+        guard let dayMenu = self.first(where: { $0.0 == day }) else {
+            return ""
+        }
+        let menuString = "\n-- \(day.rawValue):\n\(dayMenu.1.joined(separator: "\n"))\n"
         return menuString
     }
 
@@ -80,14 +94,15 @@ extension KoedoMenu {
         case .week:
             return searchMeal(meal, in: self)
         case .day(let weekDay):
-            let filtererDayMenu = self.filter { $0.key == weekDay }
+            let filtererDayMenu = self.filter { $0.0 == weekDay }
             return searchMeal(meal, in: filtererDayMenu)
         default:
             return []
         }
     }
 
-    private func searchMeal(_ meal: String, in menu: KoedoMenu) -> [MealDay] {
+    // MARK: Private
+    private func searchMeal(_ meal: String, in menu: KoedoMenuOrdered) -> [MealDay] {
         var mealDays = [MealDay]()
         menu.forEach { key, value in
             let searchedMeal = value.filter({ dish in
@@ -101,9 +116,9 @@ extension KoedoMenu {
 
 final class KoedoMenuFetcher {
     // MARK: Public
-    func fetchMenu() throws -> KoedoMenu {
+    func fetchMenu() throws -> KoedoMenuOrdered {
         let sources = try fetchWebSite()
-        return parseSources(sources)
+        return parseSources(sources).ordered()
     }
 
     // MARK: Private
@@ -461,11 +476,10 @@ final class Koedo {
         case .week:
             do {
                 let menu = try menuFetcher.fetchMenu()
-                terminalIO.writeMessage(menu.menu(forDay: .monday))
-                terminalIO.writeMessage(menu.menu(forDay: .tuesday))
-                terminalIO.writeMessage(menu.menu(forDay: .wednesday))
-                terminalIO.writeMessage(menu.menu(forDay: .thursday))
-                terminalIO.writeMessage(menu.menu(forDay: .friday))
+                let menuStr = menu.map {
+                    menu.menu(forDay: $0.0)
+                }.joined(separator: "\n")
+                terminalIO.writeMessage(menuStr)
             } catch {
                 terminalIO.writeMessage(error.localizedDescription, type: .error)
             }
