@@ -231,37 +231,6 @@ final class KoedoMenuFetcher {
     }
 }
 
-final class KoedoCurry: NSObject {
-    private static func getMealDays(from menu: KoedoMenu) -> [MealDay] {
-        var curryDays = [MealDay]()
-        menu.forEach { key, value in
-            let curryDishes = value.filter({ dish in
-                return dish.lowercased().contains(Constants.meal)
-            })
-            curryDays.append(contentsOf: curryDishes.map { MealDay(day: key.rawValue, dishType: $0) })
-        }
-        return curryDays
-    }
-}
-
-//func main() {
-
-//    guard let mealDays = KoedoCurry.searchMeal(),
-//        mealDays.count > 0 else {
-//            print("No \(Constants.meal) planned this week 😞")
-//            return
-//    }
-//    mealDays.forEach {
-//        print("\($0.dishType) planned on \($0.day) 🤤")
-//    }
-//}
-
-/**
- * Check unknown arguments => Ok
- * Check malformed query (missing second argument) => Ok
- * Check invalid query (today + week, order + anything else, help + anything else) => Ok
- **/
-
 enum ArgumentType {
     case day(Day)
     case week
@@ -525,6 +494,7 @@ final class Koedo {
                 terminalIO.writeMessage("No \(meal) planned 😞")
                 return
             }
+
             result.forEach {
                 terminalIO.writeMessage("\($0.day): \($0.dishType)")
             }

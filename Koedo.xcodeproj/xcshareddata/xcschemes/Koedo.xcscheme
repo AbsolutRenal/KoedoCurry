@@ -68,7 +68,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-m"
-            isEnabled = "NO">
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "bento"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "curry"
@@ -76,7 +80,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-t"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-w"
