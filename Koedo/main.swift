@@ -34,15 +34,15 @@ enum Day: String {
 
     init?(withWeekDay weekDay: Int) {
         switch weekDay {
-        case 1:
-            self = .monday
         case 2:
-            self = .tuesday
+            self = .monday
         case 3:
-            self = .wednesday
+            self = .tuesday
         case 4:
-            self = .thursday
+            self = .wednesday
         case 5:
+            self = .thursday
+        case 6:
             self = .friday
         default:
             return nil

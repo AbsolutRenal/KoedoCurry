@@ -68,19 +68,19 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-m"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "curry"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-t"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-w"
+            argument = "curry"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-t"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-w"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--fez"
